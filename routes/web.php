@@ -19,4 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'Frontend@index');
+Route::get('/', 'FrontendController@index');
+
+
+//admin
+
+Route::get('/backend','AdminController@index');
+Route::get('/add/post','AdminController@add_post')->name('add_post');
