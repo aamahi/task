@@ -4,14 +4,22 @@
         <div class="sl-pagebody">
             <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Add Post </h6>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                   You should check in on some of those fields below.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                @if ($message = Session::get('warning'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-warning alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $error }}</strong>
+                        </div>
+                    @endforeach
+                @endif
                 <div class="form-layout">
-                    <form action="{{route('add_post')}}" method="post">
+                    <form action="{{route('add_post')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row mg-b-25">
                             <div class="col-lg-4">

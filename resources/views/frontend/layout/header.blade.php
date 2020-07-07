@@ -17,12 +17,13 @@
 
     <!-- Custom styles for this template -->
     <link href="{{asset('frontend/style.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 </head>
 
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Top navbar</a>
+    <a class="navbar-brand" href="#">Laravel Test</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

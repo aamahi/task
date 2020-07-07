@@ -2,70 +2,51 @@
 @section('content')
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-8 mr-0" style="border-right: 1px solid red">
+            <div class="col-md-8 mr-0" style="border-right: 1px solid #000000">
                 <h3>Section 1</h3>
                 <div class="row">
-                    <div class="col-md-6 bg-info">
-                        <img src="{{asset('upload/img.jpg')}}" width="100%">
-                        <h4>Body</h4>
-                        <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</p>
+                    <div class="col-md-6">
+                        <img src="{{asset('upload/'.$section1Last->photo)}}" width="100%" height="220px;">
+{{--                        <i class="fa fa-user" style="position: absolute" ></i>--}}
+                        <a href="{{route('details',$section1Last->id)}}"><h5>{{$section1Last->title}}</h5></a>
                     </div>
-                    <div class="col-md-6 bg-success">
+                    <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-6">
-                                <img src="{{asset('upload/img.jpg')}}" width="100%">
-                                <h4>Body</h4>
+                            @foreach($section1 as $post)
+                                <div class="col-md-6">
+                                    <img src="{{asset('upload/'.$post->photo)}}" height="120px;" width="100%">
+                                    <a href="{{route('details',$post->id)}}"><p>{{$post->title}}</p></a>
                             </div>
-                            <div class="col-md-6">
-                                <img src="{{asset('upload/img.jpg')}}" width="100%">
-                                <h4>Body</h4>
-                            </div> <div class="col-md-6">
-                                <img src="{{asset('upload/img.jpg')}}" width="100%">
-                                <h4>Body section </h4>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="{{asset('upload/img.jpg')}}" width="100%">
-                                <h4>Heo second section </h4>
-                            </div>
+                            @endforeach
+
                         </div>
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <img src="{{asset('upload/img.jpg')}}" width="100%">--}}
-{{--                                <h4>Body</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <img src="{{asset('upload/img.jpg')}}" width="100%">--}}
-{{--                                <h4>Body</h4>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 bg-primary ml-0">
+            <div class="col-md-3" style="margin-left:10px;">
                 <h4>Section 2</h4>
                 <div class="row">
                     <div>
-                        <img src="{{asset('upload/img.jpg')}}" width="100%">
-                        <h2>Body</h2>
-                        <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</p>
+{{--                        @if($section2Last->youtobe =='')--}}
+                            <img src="{{asset('upload/'.$section2Last->photo)}}" width="100%" height="210px;">
+{{--                        @else--}}
+{{--                            {!! Embed::make($section2Last->youtobe)->parseUrl()->getIframe() !!}--}}
+{{--                        @endif--}}
+                        <a href="{{route('details',$section2Last->id)}}"><h5>{{$section2Last->title}}</h5></a>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{asset('upload/img.jpg')}}" width="100%">
-                            <h4>Body</h4>
-                        </div>
-                        <div class="col-md-6">
-                            <iframe width="100%" src="https://www.youtube.com/watch?v=5thGK7SQ2R0">
-                            </iframe>
-                            <h4>Body</h4>
-                        </div> <div class="col-md-6">
-                            <img src="{{asset('upload/img.jpg')}}" width="100%">
-                            <h4>Body section </h4>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="{{asset('upload/img.jpg')}}" width="100%">
-                            <h4>Heo second section </h4>
-                        </div>
+                        @foreach($section2 as $post)
+                                <div class="col-md-6">
+{{--                                    @if($post->youtobe =='')--}}
+                                        <img src="{{asset('upload/'.$post->photo)}}" height="120px;" width="100%">
+{{--                                    @else--}}
+{{--                                        <div style="height: 1px;">--}}
+{{--                                            {!! Embed::make($post->youtobe)->parseUrl()->getIframe() !!}--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+                                    <a href="{{route('details',$post->id)}}"><p>{{$post->title}}</p></a>
+                                </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

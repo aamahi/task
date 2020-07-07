@@ -4,18 +4,25 @@
         <div class="sl-pagebody">
             <div class="card pd-20 pd-sm-40 mg-t-50">
                 <h6 class="card-body-title">Post </h6>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+                @if ($message = Session::get('warning'))
+                    <div class="alert alert-warning alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered table-primary mg-b-0">
                         <thead>
                         <tr>
                             <th>Title</th>
                             <th>Video</th>
+                            <th>Publish</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -24,15 +31,24 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{$post->title}}</td>
-                                <td>{!! Embed::make($post->youtobe)->parseUrl()->getIframe() !!}</td>
+                                <td>
+                                    @if($post->youtobe == '')
+                                        <img src="{{asset('/upload/'.$post->photo)}}" width="400">
+                                    @else
+                                        {!! Embed::make($post->youtobe)->parseUrl()->getIframe() !!}
+
+                                    @endif
+                                </td>
                                 <td>
                                     @if($post->status==1)
                                         <a href="{{route('unpublish',$post->id)}}" class="btn btn-danger">Publish</a>
                                     @else
                                         <a href="{{route('publish',$post->id)}}" class="btn btn-secondary">UnPublish</a>
                                     @endif
-
-                                        <a href="{{route('delete',$post->id)}}" class="btn btn-danger">Delete</a>
+                                </td>
+                                <td>
+                                    <a href="{{route('delete',$post->id)}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a><br/>
+                                    <a href="{{route('post_details',$post->id)}}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

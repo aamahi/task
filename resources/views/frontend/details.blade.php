@@ -4,10 +4,21 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div>
-                    <img src="{{asset('upload/img.jpg')}}" width="100%">
-                    <h2>Body</h2>
-                    <p>To nest your content with the default grid, add a new .row and set of .col-sm-* columns within an existing .col-sm-* column. Nested rows should include a set of columns that add up to 12 or fewer (it is not required that you use all 12 available columns).</p>
-                    <i>icon</i>
+                    <h2>{{$post->title}}</h2>
+                    @if($post->youtobe =='')--}}
+                        <img src="{{asset('upload/'.$section2Last->photo)}}" width="100%" height="210px;">
+                    @else
+                        {!! Embed::make($post->youtobe)->parseUrl()->getIframe() !!}
+                    @endif
+{{--                    <img src="{{asset('upload/'.$post->photo)}}" width="100%">--}}
+<br/>
+                    <p>{{$post->description}}</p>
+
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_inline_share_toolbox_h1mm"></div>
+
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
                 </div>
             </div>
         </div>
